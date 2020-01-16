@@ -1,5 +1,6 @@
 package com.example.weatherappmvp.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,10 +14,6 @@ import com.example.weatherappmvp.model.WeatherModel;
 import com.example.weatherappmvp.presenter.WeatherInterface;
 import com.example.weatherappmvp.presenter.WeatherPresenter;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInterface.
 
     @BindView(R.id.rvCities)RecyclerView recyclerView;
 
-    private WeatherPresenter weatherPresenter;
+    private WeatherPresenter weatherPresenter = new WeatherPresenter(this);
     private WeatherRecyclerViewAdapter mAdapter;
 
 
@@ -37,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements WeatherInterface.
 
         bindAdapter();
 
-        weatherPresenter = new WeatherPresenter(this);
         weatherPresenter.getDataFromURL(getApplicationContext());
 
     }
