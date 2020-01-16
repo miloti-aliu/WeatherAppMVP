@@ -2,6 +2,7 @@ package com.example.weatherappmvp.presenter;
 
 import android.content.Context;
 
+import com.example.weatherappmvp.interactor.WeatherInteractor;
 import com.example.weatherappmvp.model.WeatherModel;
 
 public class WeatherPresenter implements WeatherInterface.Presenter, WeatherInterface.onGetDataListener {

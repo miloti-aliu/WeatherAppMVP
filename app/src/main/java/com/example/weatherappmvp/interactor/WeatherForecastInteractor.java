@@ -1,9 +1,10 @@
-package com.example.weatherappmvp.presenter;
+package com.example.weatherappmvp.interactor;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.weatherappmvp.model.WeatherForecastModel;
+import com.example.weatherappmvp.presenter.WeatherForecastInterface;
 import com.example.weatherappmvp.retrofit.RetrofitClient;
 import com.example.weatherappmvp.retrofit.WeatherService;
 

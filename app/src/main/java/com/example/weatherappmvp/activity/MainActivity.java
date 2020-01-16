@@ -13,6 +13,10 @@ import com.example.weatherappmvp.model.WeatherModel;
 import com.example.weatherappmvp.presenter.WeatherInterface;
 import com.example.weatherappmvp.presenter.WeatherPresenter;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
