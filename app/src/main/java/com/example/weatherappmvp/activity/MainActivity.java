@@ -1,10 +1,11 @@
 package com.example.weatherappmvp.activity;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,11 +20,11 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements WeatherInterface.View {
 
-    @BindView(R.id.rvCities)RecyclerView recyclerView;
+    @BindView(R.id.rvCities)
+    RecyclerView recyclerView;
 
-    private WeatherPresenter weatherPresenter = new WeatherPresenter(this);
+    private WeatherPresenter weatherPresenter;
     private WeatherRecyclerViewAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +32,32 @@ public class MainActivity extends AppCompatActivity implements WeatherInterface.
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        attachPresenter();
+    }
 
-        bindAdapter();
+    private void attachPresenter() {
+        mAdapter = (WeatherRecyclerViewAdapter) getLastCustomNonConfigurationInstance();
+        if (mAdapter == null) {
+            bindAdapter();
+            weatherPresenter = new WeatherPresenter(this);
+            weatherPresenter.getDataFromURL(getApplicationContext());
+        } else {
+            bindRecyclerView();
+        }
+    }
 
-        weatherPresenter.getDataFromURL(getApplicationContext());
-
+    @Nullable
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return (mAdapter);
     }
 
     private void bindAdapter() {
         mAdapter = new WeatherRecyclerViewAdapter();
+        bindRecyclerView();
+    }
+
+    private void bindRecyclerView(){
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);

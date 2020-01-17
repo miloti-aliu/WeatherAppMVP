@@ -12,12 +12,10 @@
         android:roundIcon="@mipmap/ic_weather_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ForecastActivity"
-                  android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.ForecastActivity" />
         <activity android:name=".activity.ItemCityActivity" />
         <activity android:name=".activity.CityForecastActivity" />
-        <activity android:name=".activity.MainActivity"
-                  android:configChanges="orientation|screenSize">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
